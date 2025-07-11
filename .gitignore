@@ -1,0 +1,27 @@
+# Visual Studio
+*.suo
+*.user
+*.sln
+*.sdf
+*.VC.db
+*.VC.db-shm
+*.VC.db-wal
+ipch/
+.vs/
+
+# Unreal Engine
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+Script/
+obj/
+
+# Other
+*.code-workspace
+*.xcodeproj
+*.xcworkspace
+*~
+.DS_Store
+Thumbs.db
