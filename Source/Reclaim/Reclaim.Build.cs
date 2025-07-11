@@ -1,43 +1,45 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
+// Updated for Reclaim GDD v1.1
 
 using UnrealBuildTool;
 
 public class Reclaim : ModuleRules
 {
-	public Reclaim(ReadOnlyTargetRules Target) : base(Target)
-	{
-		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+    public Reclaim(ReadOnlyTargetRules Target) : base(Target)
+    {
+        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PublicDependencyModuleNames.AddRange(new string[] {
-			"Core",
-			"CoreUObject",
-			"Engine",
-			"InputCore",
-			"EnhancedInput",
-			"AIModule",
-			"StateTreeModule",
-			"GameplayStateTreeModule",
-			"UMG"
+        // Core engine modules that are publicly exposed
+        PublicDependencyModuleNames.AddRange(new string[] {
+            "Core",
+            "CoreUObject",
+            "Engine"
+        });
+
+        // Project-specific gameplay modules
+        PrivateDependencyModuleNames.AddRange(new string[] {
+            "InputCore",
+            "EnhancedInput",        // For modern player input
+			"PhysicsCore",
+            "Niagara",              // For advanced particle effects
+
+			"GameplayAbilities",    // For abilities, attributes, and status effects
+			"GameplayTags",
+            "GameplayTasks",
+
+            "UMG",                  // For UI elements
+
+			"AIModule",             // For AI logic
+			"NavigationSystem",     // For AI pathfinding
+
+			"OnlineSubsystem",      // For base multiplayer functionality
+			"OnlineSubsystemEOS"    // For Epic Online Services (optional, for crossplay)
 		});
 
-		PrivateDependencyModuleNames.AddRange(new string[] { });
+        // Uncomment if you are using Slate UI
+        // PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
 
-		PublicIncludePaths.AddRange(new string[] {
-			"Reclaim",
-			"Reclaim/Variant_Platforming",
-			"Reclaim/Variant_Combat",
-			"Reclaim/Variant_Combat/AI",
-			"Reclaim/Variant_SideScrolling",
-			"Reclaim/Variant_SideScrolling/Gameplay",
-			"Reclaim/Variant_SideScrolling/AI"
-		});
-
-		// Uncomment if you are using Slate UI
-		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });
-
-		// Uncomment if you are using online features
-		// PrivateDependencyModuleNames.Add("OnlineSubsystem");
-
-		// To include OnlineSubsystemSteam, add it to the plugins section in your uproject file with the Enabled attribute set to true
-	}
+        // To include a specific online subsystem like Steam, add it to the plugins section
+        // in your .uproject file with the Enabled attribute set to true
+    }
 }
